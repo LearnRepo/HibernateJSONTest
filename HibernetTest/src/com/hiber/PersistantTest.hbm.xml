@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping SYSTEM "C:\Users\Shad_Hasan\Downloads\hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.hiber.PersistantTest" table="USER">
+        <id column="USER_NAME" name="userName" type="java.lang.String" />
+        <property column="PASSWORD" name="password1" type="string" />
+        <property column="EMAIL" name="email" type="java.lang.String" />
+        <property column="PHONE" name="phone" type="java.lang.String" />
+        <property column="CITY" name="city" type="java.lang.String" />
+    </class>
+</hibernate-mapping>
