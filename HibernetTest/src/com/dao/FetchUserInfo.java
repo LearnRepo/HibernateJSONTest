@@ -53,4 +53,47 @@ public FetchUserInfo(String userName)
 	  
  }
 
+	 public FetchUserInfo()
+	 {
+		 
+	 }
+ 
+ public String getInfo(String username)
+ {
+	 Transaction Tx = null;
+	 try{
+	 Configuration cfg = new Configuration();
+	 cfg.configure("hibernate.cfg.xml");
+	 SessionFactory factory = cfg.buildSessionFactory();
+	 Session session = factory.openSession();
+	  List<PersistantTest> ls = null;
+		 Tx = session.beginTransaction();
+		 String hql = "from PersistantTest PT where PT.userName ='" +username+"'";
+		 Query query = session.createQuery(hql);
+		 ls = query.list();
+		 session.close();
+		 factory.close();
+		 if(ls.isEmpty())
+		 {
+			 System.out.print("No Such Entity");
+			 //Tx.rollback();
+			 return "No Such Entity";
+		 }
+		 else
+		 {
+			 createJSON cj = new createJSON(ls);
+			 return cj.getJson();
+		 /*for(PersistantTest PT : ls)
+			 System.out.print(PT.getCity());*/
+		 }
+		 
+	 }
+	 catch(HibernateException e)
+	 { 
+			 
+         e.printStackTrace(); 
+	 }
+	return username=null;
+	  
+ }
 }

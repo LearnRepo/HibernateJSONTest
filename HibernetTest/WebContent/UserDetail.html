@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Profile Info</title>
+<style>
+	div#div1
+	{
+		margin-left: auto;
+  		margin-right: auto;
+		height:250px;
+		width:400px;
+		border-style: solid;
+		border-wdith:2px;
+		border-color:green;
+		text-align:center;
+		padding-top: 50px;
+	}
+</style>
+<script type="text/javascript" src="http://blrkec259343d/HibernetTest/jquery.min.js">
+</script>
+<script>
+	function f1()
+	{
+		var v1 = $("#text1").val();		
+		$.post('LoadData',{V1: v1},function(response){
+			if(response != "No Such Entity")
+				{
+					var jsonData = JSON.parse(response);
+					var fHtml ="<table><tr><td>UserName</td><td>"+jsonData[0].UserName +"</td></tr><tr><td>Email</td><td>"+ jsonData[0].Email +"</td></tr><tr><td>City</td><td>"+ jsonData[0].City+"</tr></td></table>";
+					$("#div1").html(fHtml);
+				}
+			else
+			$("#div1").html("<table><tr><td>User doesn't exist</td></tr></table>");
+		});
+	}
+</script>
+</head>
+<body>
+	<div id="div1">
+		<label for="text1">User Name</label>
+		<input type="text" value="" id="text1" placeholder="Enter Username">
+		<button id="btn1" onclick="f1()">Get Profile </button>
+	</div>
+</body>
+</html>
